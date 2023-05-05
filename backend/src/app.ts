@@ -22,10 +22,19 @@ app.set("queues", {
   sendScheduledMessages
 });
 
+const whitelist = [process.env.FRONTEND_URL, 'http://localhost:3000'];
+
+
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL
+    origin: (origin: any, callback: any) => {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
   })
 );
 app.use(cookieParser());
