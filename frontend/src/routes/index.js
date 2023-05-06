@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard/";
 import TicketResponsiveContainer from "../pages/TicketResponsiveContainer";
 import Signup from "../pages/Signup/";
 import Login from "../pages/Login/";
+import Marketplace from "../pages/Marketplace/";
 import Connections from "../pages/Connections/";
 import SettingsCustom from "../pages/SettingsCustom/";
 import Financeiro from "../pages/Financeiro/";
@@ -20,6 +21,8 @@ import ContactLists from "../pages/ContactLists/";
 import ContactListItems from "../pages/ContactListItems/";
 // import Companies from "../pages/Companies/";
 import QuickMessages from "../pages/QuickMessages/";
+import Callback from "../pages/Callback/";
+
 import { AuthProvider } from "../context/Auth/AuthContext";
 import { TicketsContextProvider } from "../context/Tickets/TicketsContext";
 import { WhatsAppsProvider } from "../context/WhatsApp/WhatsAppsContext";
@@ -31,7 +34,6 @@ import CampaignReport from "../pages/CampaignReport";
 import Annoucements from "../pages/Annoucements";
 import Chat from "../pages/Chat";
 import Subscription from "../pages/Subscription/";
-
 
 const Routes = () => {
   const [showCampaigns, setShowCampaigns] = useState(false);
@@ -74,6 +76,12 @@ const Routes = () => {
                 />
                 <Route
                   exact
+                  path="/marketplace"
+                  component={Marketplace}
+                  isPrivate
+                />
+                <Route
+                  exact
                   path="/schedules"
                   component={Schedules}
                   isPrivate
@@ -82,6 +90,8 @@ const Routes = () => {
                 <Route exact path="/contacts" component={Contacts} isPrivate />
                 <Route exact path="/helps" component={Helps} isPrivate />
                 <Route exact path="/users" component={Users} isPrivate />
+                <Route exact path="/callback" component={Callback} isPrivate />
+
                 <Route
                   exact
                   path="/messages-api"

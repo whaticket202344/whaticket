@@ -22,11 +22,10 @@
     "gn-api-sdk-node": "^3.0.2",
     "i18next": "^19.8.2",
     "i18next-browser-languagedetector": "^6.0.1",
-    "react-facebook-login": "^4.1.1",
     "markdown-to-jsx": "^7.1.0",
     "material-ui-color": "^1.2.0",
-    "mic-recorder-to-mp3": "^2.2.2",
     "material-ui-popup-state": "^1.7.0",
+    "mic-recorder-to-mp3": "^2.2.2",
     "moment": "^2.29.1",
     "qrcode.react": "^1.0.0",
     "query-string": "^7.0.0",
@@ -36,6 +35,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-currency-format": "^1.1.0",
     "react-dom": "^16.13.1",
+    "react-facebook-login": "^4.1.1",
     "react-icons": "^4.4.0",
     "react-input-mask": "^2.0.4",
     "react-modal-image": "^2.5.0",
@@ -47,7 +47,7 @@
     "react-toastify": "9.0.0",
     "recharts": "^2.0.2",
     "socket.io-client": "^3.0.5",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.10",
     "text-mask-addons": "^3.8.0",
     "use-debounce": "^7.0.0",
     "use-sound": "^2.0.1",
@@ -76,5 +76,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
   }
 }

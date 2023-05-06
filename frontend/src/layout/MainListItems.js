@@ -15,6 +15,7 @@ import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
 import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
+import StoreIcon from "@material-ui/icons/Store";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import CodeRoundedIcon from "@material-ui/icons/CodeRounded";
 import EventIcon from "@material-ui/icons/Event";
@@ -26,7 +27,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import ListIcon from "@material-ui/icons/ListAlt";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import ForumIcon from "@material-ui/icons/Forum";
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 
 import { i18n } from "../translate/i18n";
 import { WhatsAppsContext } from "../context/WhatsApp/WhatsAppsContext";
@@ -64,8 +65,8 @@ const reducer = (state, action) => {
     const newChats = [];
 
     if (isArray(chats)) {
-      chats.forEach((chat) => {
-        const chatIndex = state.findIndex((u) => u.id === chat.id);
+      chats.forEach(chat => {
+        const chatIndex = state.findIndex(u => u.id === chat.id);
         if (chatIndex !== -1) {
           state[chatIndex] = chat;
         } else {
@@ -79,7 +80,7 @@ const reducer = (state, action) => {
 
   if (action.type === "UPDATE_CHATS") {
     const chat = action.payload;
-    const chatIndex = state.findIndex((u) => u.id === chat.id);
+    const chatIndex = state.findIndex(u => u.id === chat.id);
 
     if (chatIndex !== -1) {
       state[chatIndex] = chat;
@@ -92,7 +93,7 @@ const reducer = (state, action) => {
   if (action.type === "DELETE_CHAT") {
     const chatId = action.payload;
 
-    const chatIndex = state.findIndex((u) => u.id === chatId);
+    const chatIndex = state.findIndex(u => u.id === chatId);
     if (chatIndex !== -1) {
       state.splice(chatIndex, 1);
     }
@@ -104,7 +105,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "CHANGE_CHAT") {
-    const changedChats = state.map((chat) => {
+    const changedChats = state.map(chat => {
       if (chat.id === action.payload.chat.id) {
         return action.payload.chat;
       }
@@ -114,7 +115,7 @@ const reducer = (state, action) => {
   }
 };
 
-const MainListItems = (props) => {
+const MainListItems = props => {
   const { drawerClose } = props;
   const { whatsApps } = useContext(WhatsAppsContext);
   const { user } = useContext(AuthContext);
@@ -145,7 +146,7 @@ const MainListItems = (props) => {
     const companyId = localStorage.getItem("companyId");
     const socket = socketConnection({ companyId });
 
-    socket.on(`company-${companyId}-chat`, (data) => {
+    socket.on(`company-${companyId}-chat`, data => {
       if (data.action === "new-message") {
         dispatch({ type: "CHANGE_CHAT", payload: data });
       }
@@ -185,7 +186,7 @@ const MainListItems = (props) => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (whatsApps.length > 0) {
-        const offlineWhats = whatsApps.filter((whats) => {
+        const offlineWhats = whatsApps.filter(whats => {
           return (
             whats.status === "qrcode" ||
             whats.status === "PAIRING" ||
@@ -207,7 +208,7 @@ const MainListItems = (props) => {
   const fetchChats = async () => {
     try {
       const { data } = await api.get("/chats/", {
-        params: { searchParam, pageNumber },
+        params: { searchParam, pageNumber }
       });
       dispatch({ type: "LOAD_CHATS", payload: data.records });
     } catch (err) {
@@ -239,6 +240,12 @@ const MainListItems = (props) => {
         to="/quick-messages"
         primary={i18n.t("mainDrawer.listItems.quickMessages")}
         icon={<FlashOnIcon />}
+      />
+
+      <ListItemLink
+        to="/marketplace"
+        primary={i18n.t("mainDrawer.listItems.marketplace")}
+        icon={<StoreIcon />}
       />
 
       <ListItemLink
@@ -288,7 +295,7 @@ const MainListItems = (props) => {
               <>
                 <ListItem
                   button
-                  onClick={() => setOpenCampaignSubmenu((prev) => !prev)}
+                  onClick={() => setOpenCampaignSubmenu(prev => !prev)}
                 >
                   <ListItemIcon>
                     <EventAvailableIcon />
@@ -368,18 +375,18 @@ const MainListItems = (props) => {
               primary={i18n.t("mainDrawer.listItems.messagesAPI")}
               icon={<CodeRoundedIcon />}
             />
-             <ListItemLink
-                to="/financeiro"
-                primary={i18n.t("mainDrawer.listItems.financeiro")}
-                icon={<LocalAtmIcon />}
-              />
+            <ListItemLink
+              to="/financeiro"
+              primary={i18n.t("mainDrawer.listItems.financeiro")}
+              icon={<LocalAtmIcon />}
+            />
 
             <ListItemLink
               to="/settings"
               primary={i18n.t("mainDrawer.listItems.settings")}
               icon={<SettingsOutlinedIcon />}
             />
-{}
+            {}
           </>
         )}
       />
